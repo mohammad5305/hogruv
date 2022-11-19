@@ -1,0 +1,42 @@
+@font-face{
+    font-family: Terminus;
+    src: url('../fonts/TerminusnerdTTF-4.40.1.ttf') format('ttf');
+    src: url('../fonts/Terminus.woff') format('woff');
+}
+body {
+    background-color: #282828;
+    color: #ebdbb2;
+    font-family: Terminus;
+
+}
+input {
+    background-color: #bdae93;
+    border: none;
+}
+ul {
+    list-style: none;
+    font-size:21px;
+}
+li, #del{
+    display: inline;
+}
+button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: #689d6a;
+    font-size: 20px; 
+}
+#todo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+#todo_box{
+    border-radius: 4px;
+    width: 40%;
+    height: 32px;
+}
