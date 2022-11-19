@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  home_page:
+    build: .
+    volumes:
+      - type: bind
+        source: ./todo.txt
+        target: /code/todo.txt
+    ports:
+      - 8080:8080
