@@ -3,11 +3,12 @@
     src: url('../fonts/TerminusnerdTTF-4.40.1.ttf') format('ttf');
     src: url('../fonts/Terminus.woff') format('woff');
 }
+* {
+    font-family: Terminus;
+}
 body {
     background-color: #282828;
     color: #ebdbb2;
-    font-family: Terminus;
-
 }
 input {
     background-color: #bdae93;
@@ -36,6 +37,8 @@ button {
     width: 100%;
 }
 #todo_box{
+    outline: none;
+    font-size: Terminus;
     border-radius: 4px;
     width: 40%;
     height: 32px;
