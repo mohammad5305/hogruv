@@ -5,8 +5,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
+        <link rel="icon" href="data:,">
     </head>
     <body>
+        <div class="todo">
         <h1>TODO: </h1>
         <ul>
             {% for task in todo_txt %}
@@ -19,10 +21,12 @@
             </li><br/>
             {% endfor %}
         </ul>
+        </div>
 
         <form id="todo" action="{{ url_for('add') }}">
             <input id="todo_box" name="todo_box">
         </form>
+
         <script>
         document.getElementById("todo_box").addEventListener("keydown", (event) => {
               if (event.keyCode === 13) {
