@@ -1,3 +1,16 @@
+:root{
+    /* gruvbox */
+    --bg:#282828;
+    --fg:#ebdbb2;
+    --white:#bdae93;
+    --green:#689d6a;
+
+    /* onedark */
+    /* --bg: #282C34; */
+    /* --fg:#ABB2BF; */
+    /* --white:#56B6C2; */
+    /* --green:#98C379; */
+}
 @font-face{
     font-family: Terminus;
     src: url('../fonts/TerminusnerdTTF-4.40.1.ttf') format('ttf');
@@ -7,11 +20,11 @@
     font-family: Terminus;
 }
 body {
-    background-color: #282828;
-    color: #ebdbb2;
+    background-color: var(--bg);
+    color: var(--fg);
 }
 input {
-    background-color: #bdae93;
+    background-color: var(--white);
     border: none;
 }
 ul {
@@ -28,7 +41,7 @@ button {
     cursor: pointer;
     overflow: hidden;
     outline: none;
-    color: #689d6a;
+    color: var(--green);
     font-size: 20px; 
 }
 #todo {
