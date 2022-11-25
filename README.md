@@ -15,8 +15,10 @@ FLASK_APP=app flask --host 0.0.0.0 --port 8080 run
 ```
 
 ## Usage 
-Change your new page to `localhost:8080` and for prioritizing use '-' followed with alphabet, tasks without it will be z
-like:
+Change your new page to `localhost:8080` and for prioritizing use `-` followed with alphabet, tasks without it will be z
+
+Example:
 ```
 -A hello world
+bye
 ```
