@@ -17,7 +17,7 @@
                     <input type="hidden" value="{{ task }}" name="task">
                     <button type="submit">x</button>
                 </form>
-                {{ task }}
+                {{ task | resub("-[A-Za-z]", "") }}
             </li><br/>
             {% endfor %}
         </ul>
