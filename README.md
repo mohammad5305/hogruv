@@ -3,7 +3,7 @@
 
 a simple and minimal home page for browsers with gruvbox and Its useful for people like me that can't manage their TODO and updated every day.
 
-## Usage
+## Installation
 I would recommend using the docker compose because its easier
 ```docker
 docker compose up -d
@@ -13,4 +13,10 @@ Also you can run it without docker:
 pip install -r requirements.txt
 FLASK_APP=app flask --host 0.0.0.0 --port 8080 run
 ```
-and change your default home page to `localhost:8080`
+
+## Usage 
+Change your new page to `localhost:8080` and for prioritizing use '-' followed with alphabet, tasks without it will be z
+like:
+```
+-A hello world
+```
