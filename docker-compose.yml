@@ -8,3 +8,4 @@ services:
         target: /code/todo.txt
     ports:
       - 8080:8080
+    restart: always
