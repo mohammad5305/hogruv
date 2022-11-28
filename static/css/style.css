@@ -19,6 +19,9 @@
 * {
     font-family: Terminus;
 }
+.fa{
+    font-family: Vazir;
+}
 body {
     background-color: var(--bg);
     color: var(--fg);
