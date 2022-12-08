@@ -8,8 +8,13 @@
         <link rel="icon" href="data:,">
     </head>
     <body>
-        <div class="todo">
-        <h1>TODO: </h1>
+        <div class="header">
+            <h1>TODO: </h1>
+            <form id="todo" action="{{ url_for('add') }}">
+                <input id="todo_box" name="todo_box">
+            </form>
+        </div>
+
         <ul>
             {% for task in todo_txt %}
             <li>
@@ -21,18 +26,14 @@
             </li><br/>
             {% endfor %}
         </ul>
-        </div>
-
-        <form id="todo" action="{{ url_for('add') }}">
-            <input id="todo_box" name="todo_box">
-        </form>
 
         <script>
         document.getElementById("todo_box").addEventListener("keydown", (event) => {
-              if (event.keyCode === 13) {
+            if (event.keyCode === 13) {
                 document.getElementById('todo').submit();
             }
         });
+
         </script>
     </body>
 </html>
