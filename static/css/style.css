@@ -1,9 +1,15 @@
 :root{
     /* gruvbox */
-    --bg:#282828;
-    --fg:#ebdbb2;
-    --white:#bdae93;
-    --green:#689d6a;
+    /* --bg:#282828; */
+    /* --fg:#ebdbb2; */
+    /* --white:#bdae93; */
+    /* --green:#689d6a; */
+
+    /* tokyonight */
+    --bg: #1a1b26;
+    --fg: #a9b1d6;
+    --white:#acb0d0;
+    --green:#9ECE6A;
 
     /* onedark */
     /* --bg: #282C34; */
@@ -17,10 +23,10 @@
     src: url('../fonts/Terminus.woff') format('woff');
 }
 * {
-    font-family: Terminus;
+    font-family: Vazir Code Hack Extra Height, Terminus;
 }
 .fa{
-    font-family: Vazir;
+    font-family: Vazir Code Hack Extra Height, Vazir;
 }
 body {
     background-color: var(--bg);
@@ -49,7 +55,7 @@ button {
 }
 #todo {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     width: 100%;
 }
 #todo_box{
@@ -58,4 +64,8 @@ button {
     border-radius: 4px;
     width: 40%;
     height: 32px;
+}
+.header {
+    display: flex;
+    align-items: center;
 }
