@@ -22,3 +22,5 @@ Example:
 -A hello world
 bye
 ```
+
+> **_NOTE:_** For changing colorscheme edit the css on /static/css/style.css
