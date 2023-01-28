@@ -1,5 +1,7 @@
 # hogruv
-![image](https://user-images.githubusercontent.com/71145952/202860623-26c6545c-5bf6-4932-b82f-8bf35835e95e.png)
+![image](https://user-images.githubusercontent.com/71145952/215286684-9fe2a3b3-e128-4c6d-99c9-8388dd70a831.png)
+
+
 
 A simple and minimal TODO list for browsers and Its useful for people like me that can't manage their TODO and updated every day.
 
