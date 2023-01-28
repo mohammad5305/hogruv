@@ -1,10 +1,10 @@
 # hogruv
 ![image](https://user-images.githubusercontent.com/71145952/202860623-26c6545c-5bf6-4932-b82f-8bf35835e95e.png)
 
-a simple and minimal home page for browsers with gruvbox and Its useful for people like me that can't manage their TODO and updated every day.
+A simple and minimal TODO list for browsers and Its useful for people like me that can't manage their TODO and updated every day.
 
 ## Installation
-I would recommend using the docker compose because its easier
+I recommend using the docker compose because its easier
 ```docker
 docker compose up -d
 ```
@@ -15,12 +15,27 @@ FLASK_APP=app flask --host 0.0.0.0 --port 8080 run
 ```
 
 ## Usage 
-Change your new page to `localhost:8080` and for prioritizing use `-` followed with alphabet, tasks without it will be z
+In most browsers for changing new page you need to install a plugin
 
-Example:
+Chrome: [New Tab Redirect](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna?hl=en)
+
+Firefox: [New Tab Override](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/)
+
+Then change your new page to `localhost:8080`
+
+### Prioritizing Tasks
+Use a hyphen followed by a alphabet like:
 ```
 -A hello world
-bye
 ```
 
-> **_NOTE:_** For changing colorscheme edit the css on /static/css/style.css
+### Date
+Use Today, Tomorrow, Yesterday or a date with following format m/d like:
+```
+buying gorcriess today
+```
+
+The place of date doesn't matter It the end or start.
+### Other color schemes
+You can change color scheme by editing `/static/css/style.css` and changing colors variables
+
