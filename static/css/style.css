@@ -11,6 +11,8 @@
     --fg: #a9b1d6;
     --white:#acb0d0;
     --green:#9ECE6A;
+    --border: #f25287;
+    --warning: #ca4749;
 
     /* onedark */
     /* --bg: #282C34; */
@@ -40,6 +42,24 @@ input {
 ul {
     list-style: none;
     font-size:21px;
+}
+.warning {
+    color:var(--warning);
+    font-size: 80%;
+}
+.task-container {
+    overflow-y: scroll;
+    height: 80vh;
+    /* Hiding scrollbar */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.task-container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+h2{
+    padding-left: 2%;
 }
 li, #del{
     display: inline;
