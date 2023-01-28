@@ -38,6 +38,8 @@ buying gorcriess today
 ```
 
 The place of date doesn't matter It the end or start.
+
+Tasks without date will go to long-term category
 ### Other color schemes
 You can change color scheme by editing `/static/css/style.css` and changing colors variables
 
