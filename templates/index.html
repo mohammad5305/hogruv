@@ -14,18 +14,31 @@
                 <input id="todo_box" name="todo_box">
             </form>
         </div>
-
-        <ul>
-            {% for task in todo_txt %}
-            <li>
-                <form id="del" action="{{ url_for('delete') }}">
-                    <input type="hidden" value="{{ task }}" name="task">
-                    <button type="submit">x</button>
-                </form>
-                {{ make_para(task) | safe}}
-            </li><br/>
+        <div class="task-container">
+            {% for date, tasks in todo_list.items() %}
+                {% if date == today.strftime("%m/%d") %}
+                    <h2>Today</h2>
+                {% elif date == (today+timedelta(1)).strftime("%m/%d") %}
+                    <h2>Tomorrow</h2>
+                {% elif date == (today-timedelta(1)).strftime("%m/%d") %}
+                    <h2>Yesterday <span class="warning">Hurry up!</span></h2>
+                {% else %}
+                    <h2>{{ date }}</h2>
+                {% endif %}
+                <ul>
+                {% for task in tasks %}
+                <li>
+                    <form id="del" action="{{ url_for('delete') }}">
+                        <input type="hidden" value="{{ task }}" name="task">
+                        <input type="hidden" value="{{ date }}" name="date">
+                        <button type="submit">x</button>
+                    </form>
+                    {{ make_para(task) | safe}}
+                </li><br/>
+                {% endfor %}
+                </ul>
             {% endfor %}
-        </ul>
+        </div>
 
         <script>
         document.getElementById("todo_box").addEventListener("keydown", (event) => {

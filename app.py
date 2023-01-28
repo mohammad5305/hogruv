@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, abort
 import jinja2
 import re
+import json
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -29,35 +31,68 @@ jinja2.filters.FILTERS['resub'] = regex_replace
 
 @app.route('/')
 def home():
-    with open('./todo.txt', 'r') as todo:
-        todo_txt = todo.readlines()
-    todo_txt.sort(key=lambda x: x[1].lower() if x[0] == '-' else 'z')
-    return render_template('index.html', todo_txt=todo_txt, make_para=make_para)
+    with open('./todo.json', 'r') as todo_file:
+        todo_list = json.load(todo_file)
+
+    todo_list = dict(sorted(todo_list.items()))
+
+    for day in todo_list.values():
+        day.sort(key=lambda x: x[1].lower() if x[0] == '-' else 'z')
+
+    return render_template('index.html', todo_list=todo_list, make_para=make_para, today=datetime.today(), timedelta=timedelta)
 
 
 @app.route('/add', methods=["GET"])
 def add():
-    with open('./todo.txt', 'a') as todo:
-        todo.write(request.args.get('todo_box')+"\n")
+
+    with open('./todo.json', 'r') as todo:
+        todo_list = json.load(todo)
+
+    with open('./todo.json', 'w') as todo:
+        new_task = request.args.get('todo_box')
+        date_pattern = r"\d+\/\d+"
+        today = datetime.today().strftime("%m/%d")
+
+        if re.search(date_pattern, new_task):
+            date = re.search(date_pattern, new_task).group()
+            new_task = re.sub(date_pattern, "", new_task)
+        elif re.search("today", new_task.lower()):
+            date = today
+            new_task = re.sub("today", "", new_task.lower())
+        else:
+            date = "long-term"
+
+
+        if todo_list.get(date):
+            todo_list[date] += [new_task]
+        else:
+            todo_list.update({date: [new_task]})
+
+        todo.write(json.dumps(todo_list))
 
     return redirect('/')
 
 
-@app.route('/del', methods=["GET"])
+@ app.route('/del', methods=["GET"])
 def delete():
     if not request.args.get('task'):
         abort(400)
 
     else:
-        with open("./todo.txt", 'r+') as fp:
-            lines = fp.readlines()
+        date = request.args.get("date")
+        task = request.args.get("task")
 
-            fp.seek(0)
+        with open('./todo.json', 'r') as todo:
+            todo_list = json.load(todo)
 
-            fp.truncate()
-
-            for line in lines:
-                if line.strip() != request.args.get('task').strip():
-                    fp.write(line)
+        with open("./todo.json", 'w') as todo:
+            field = todo_list[date]
+            if len(field) == 1:
+                print(todo_list)
+                todo_list.pop(date)
+            else:
+                print(todo_list)
+                field.remove(task)
+            todo.write(json.dumps(todo_list))
 
     return redirect('/')
