@@ -16,14 +16,15 @@ def regex_replace(s, find, replace):
 def is_persian(string):
     pattern = r"[\u0600-\u06FF\u0750-\u077F\u0590-\u05FF\uFE70-\uFEFF]"
 
-    return True if re.search(pattern, string) else False
+    return re.search(pattern, string) != None
 
 
-def make_para(task):
+def make_para(task, class_attr):
+    class_attr = str(class_attr)
     if is_persian(task):
-        return f'<span class="fa">{regex_replace(task, "-[A-Za-z]", "")}</span>'
-    else:
-        return f'<span>{regex_replace(task, "-[A-Za-z]", "")}</span>'
+        class_attr = " fa"
+
+    return f'<span class="{class_attr}">{regex_replace(task, "-[A-Za-z]", "")}</span>'
 
 
 jinja2.filters.FILTERS['resub'] = regex_replace
@@ -44,11 +45,8 @@ def home():
 
 @app.route('/add', methods=["GET"])
 def add():
-
-    with open('./todo.json', 'r') as todo:
+    with open('./todo.json', 'r+') as todo:
         todo_list = json.load(todo)
-
-    with open('./todo.json', 'w') as todo:
         new_task = request.args.get('todo_box')
         date_pattern = r"\d+\/\d+"
         today = datetime.today().strftime("%m/%d")
@@ -61,7 +59,6 @@ def add():
             new_task = re.sub("today", "", new_task.lower())
         else:
             date = "long-term"
-
 
         if todo_list.get(date):
             todo_list[date] += [new_task]
@@ -81,17 +78,12 @@ def delete():
     else:
         date = request.args.get("date")
         task = request.args.get("task")
-
-        with open('./todo.json', 'r') as todo:
+        with open("./todo.json", 'r+') as todo:
             todo_list = json.load(todo)
-
-        with open("./todo.json", 'w') as todo:
             field = todo_list[date]
             if len(field) == 1:
-                print(todo_list)
                 todo_list.pop(date)
             else:
-                print(todo_list)
                 field.remove(task)
             todo.write(json.dumps(todo_list))
 

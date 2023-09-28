@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
+        <title>Todo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
@@ -15,6 +15,7 @@
             </form>
         </div>
         <div class="task-container">
+            {% set i = 1 %}
             {% for date, tasks in todo_list.items() %}
                 {% if date == today.strftime("%m/%d") %}
                     <h2>Today</h2>
@@ -27,13 +28,14 @@
                 {% endif %}
                 <ul>
                 {% for task in tasks %}
+                
                 <li>
                     <form id="del" action="{{ url_for('delete') }}">
                         <input type="hidden" value="{{ task }}" name="task">
                         <input type="hidden" value="{{ date }}" name="date">
                         <button type="submit">x</button>
                     </form>
-                    {{ make_para(task) | safe}}
+                    {{ make_para(task, i) | safe}}
                 </li><br/>
                 {% endfor %}
                 </ul>
