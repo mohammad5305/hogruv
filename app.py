@@ -7,19 +7,34 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 
 
-# Custom filter method
-def regex_replace(s, find, replace):
-    """A non-optimal implementation of a regex filter"""
+def regex_replace(s: str, find: str, replace: str) -> str:
+    """A non-optimal implementation of regex filter for jinja"""
     return re.sub(find, replace, s)
 
 
-def is_persian(string):
+def is_persian(string: str) -> bool:
+    """Checks if string is a Persian
+
+    Args:
+    string(str)
+
+    Returns: bool
+    """
     pattern = r"[\u0600-\u06FF\u0750-\u077F\u0590-\u05FF\uFE70-\uFEFF]"
 
     return re.search(pattern, string) != None
 
 
-def make_para(task, class_attr):
+def make_para(task: str, class_attr: str) -> str:
+    """Creates an html span tag with classes from class_attr and removing prioritizing section of task
+
+    Args:
+    task(str)
+    class_attr(str): classes to be used in span class attribute
+
+    Returns: string
+    """
+
     class_attr = str(class_attr)
     if is_persian(task):
         class_attr = " fa"
@@ -45,6 +60,10 @@ def home():
 
 @app.route('/add', methods=["GET"])
 def add():
+    """
+    Inserts a new todo task to the todo file
+    """
+
     with open('./todo.json', 'r+') as todo:
         todo_list = json.load(todo)
         new_task = request.args.get('todo_box')
@@ -72,6 +91,9 @@ def add():
 
 @ app.route('/del', methods=["GET"])
 def delete():
+    """
+    Deletes a task using task,date query strings
+    """
     if not request.args.get('task'):
         abort(400)
 
